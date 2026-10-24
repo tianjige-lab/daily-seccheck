@@ -1,0 +1,67 @@
+{
+  "_comment": "Copy to config.json and edit. Every address below is a documentation placeholder (RFC 5737 / example.invalid), not a real host.",
+  "stateDir": "state",
+  "alertDirs": ["alerts"],
+
+  "modules": {
+    "osv": true,
+    "hosts": true,
+    "node": true,
+    "router": false,
+    "windowsUpdate": true,
+    "kev": true,
+    "keyleak": true
+  },
+
+  "ssh": { "keyFile": "~/.ssh/id_ed25519" },
+
+  "hosts": [
+    {
+      "name": "web1",
+      "target": "deploy@192.0.2.10",
+      "keyFile": "",
+      "services": ["nginx"],
+      "userServices": [],
+      "checkLinger": false
+    }
+  ],
+
+  "remoteWindows": [
+    {
+      "name": "winbox",
+      "target": "admin@192.0.2.20",
+      "keyFile": "",
+      "nodePath": "C:\\Program Files\\nodejs\\node.exe"
+    }
+  ],
+
+  "osv": {
+    "minSeverity": "HIGH",
+    "locks": [
+      { "label": "app", "path": "C:\\work\\app\\package-lock.json" }
+    ],
+    "remoteLocks": [
+      { "label": "prod-web1", "host": "web1", "path": "/srv/app/current/package-lock.json" }
+    ]
+  },
+
+  "node": { "localNode": "node", "localLabel": "this-pc" },
+
+  "router": {
+    "name": "office-router",
+    "firmwareUrl": "https://example.invalid/router/latest.txt",
+    "currentVersion": "1.0.0"
+  },
+
+  "windowsUpdate": { "maxAgeDays": 35, "localLabel": "this-pc" },
+
+  "kev": { "keywords": ["openssl", "openssh", "nginx", "node.js", "linux kernel", "windows", "ubuntu", "sqlite"] },
+
+  "keyleak": {
+    "roots": ["C:\\work"],
+    "secretsDir": "~/.secrets",
+    "activeFiles": [],
+    "excludeDirs": [],
+    "hoursBack": 26
+  }
+}
